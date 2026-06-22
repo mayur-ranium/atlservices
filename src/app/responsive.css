@@ -1,0 +1,253 @@
+/* ─────────────────────────────────────────────────────────────
+   RESPONSIVE — media-query overrides for components that use
+   inline styles (which can't contain @media rules).
+   ───────────────────────────────────────────────────────────── */
+
+/* ─── HEADER ──────────────────────────────────────────────────── */
+.desktop-nav    { display: flex; }
+.mobile-controls { display: none; }
+
+@media (max-width: 900px) {
+  .desktop-nav     { display: none !important; }
+  .mobile-controls { display: flex !important; }
+}
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-emergency-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .footer-emergency-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-emergency-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .footer-emergency-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ─── HOMEPAGE: HERO ──────────────────────────────────────────── */
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-stats-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.hero-trust-row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hero-stats-panel {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-stats-panel {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ─── HOMEPAGE: QUOTE SECTION ─────────────────────────────────── */
+.quote-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.quote-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .quote-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .quote-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── HOMEPAGE: EMERGENCY SECTION ─────────────────────────────── */
+.emergency-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.emergency-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .emergency-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .emergency-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .emergency-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ─── HOMEPAGE: REVIEWS ───────────────────────────────────────── */
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .reviews-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ─── HOMEPAGE: AREAS ─────────────────────────────────────────── */
+.areas-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* ─── HOMEPAGE: WHY GRID ──────────────────────────────────────── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 600px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ─── SERVICES GRID ───────────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 500px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── MOBILE CALL BUTTON ──────────────────────────────────────── */
+.mobile-call-btn {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-call-btn {
+    display: flex !important;
+  }
+}
+
+/* ─── FOOTER LINK HOVER ───────────────────────────────────────── */
+.footer-link:hover { color: rgba(255,255,255,0.9) !important; }
+.social-link:hover { background: rgba(255,255,255,0.2) !important; }
+.nav-link:hover    { color: var(--color-primary) !important; }

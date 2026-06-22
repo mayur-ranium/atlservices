@@ -128,6 +128,7 @@
   .badge-accent    { @apply bg-[#FEF3C7] text-[#92400E]; }
   .badge-emergency { @apply bg-emergency-bg text-emergency; }
   .badge-green     { @apply bg-[#DCFCE7] text-[#166534]; }
+  .badge-default   { @apply bg-surface text-muted border border-border; }
 
   /* Stars */
   .stars { @apply inline-flex gap-0.5 text-accent; }

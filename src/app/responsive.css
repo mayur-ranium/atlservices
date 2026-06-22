@@ -247,6 +247,40 @@
   }
 }
 
+/* ─── SERVICE DETAIL PAGE ────────────────────────────────────── */
+
+/* Hero: 2-col (copy + price card) → 1-col on mobile */
+@media (max-width: 900px) {
+  /* inline style override — applied via parent class */
+  .service-hero-body {
+    grid-template-columns: 1fr !important;
+  }
+  .service-price-card {
+    width: 100% !important;
+  }
+}
+
+/* Included / not-included 2-col → 1-col */
+@media (max-width: 768px) {
+  .service-included-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  .service-faq-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .service-faq-sidebar {
+    position: static !important;
+  }
+}
+
+/* Stats row on services hub — 4-col → 2-col on mobile */
+@media (max-width: 600px) {
+  .services-hub-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
 /* ─── FOOTER LINK HOVER ───────────────────────────────────────── */
 .footer-link:hover { color: rgba(255,255,255,0.9) !important; }
 .social-link:hover { background: rgba(255,255,255,0.2) !important; }

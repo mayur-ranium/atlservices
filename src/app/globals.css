@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────────────────────
-   DESIGN TOKENS — map client colors here
-   CSS variables mirror the Tailwind theme values so both
-   Tailwind utilities (bg-primary) and var() work side-by-side.
+   DESIGN TOKENS — override per client
+   CSS vars mirror Tailwind theme values so both var() and
+   Tailwind utilities (bg-primary, text-muted, …) work.
    ───────────────────────────────────────────────────────────── */
 :root {
-  /* Brand — override per client */
   --color-primary:       #1B4FD8;
   --color-primary-dark:  #1340B0;
   --color-primary-light: #EEF2FF;
@@ -16,192 +15,126 @@
   --color-accent-dark:   #D97706;
   --color-emergency:     #DC2626;
   --color-emergency-bg:  #FEF2F2;
-
-  /* Neutrals */
   --color-dark:    #0F172A;
   --color-text:    #1E293B;
   --color-muted:   #64748B;
   --color-border:  #E2E8F0;
   --color-surface: #F8FAFC;
   --color-white:   #FFFFFF;
-
-  /* Spacing */
   --space-section:    5rem;
   --space-section-sm: 3rem;
-
-  /* Header height */
-  --header-h: 72px;
+  --header-h:     72px;
 }
 
-/* ─── Base layer ──────────────────────────────────────────────── */
-@layer base {
-  *, *::before, *::after {
-    @apply box-border m-0 p-0;
+@media (max-width: 768px) {
+  :root {
+    --space-section:    3.5rem;
+    --space-section-sm: 2rem;
   }
+}
 
-  html {
-    @apply text-base overflow-x-hidden scroll-smooth;
-    max-width: 100vw;
-  }
+/* ─── Base ─────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { @apply box-border m-0 p-0; }
+
+  html { @apply text-base overflow-x-hidden scroll-smooth; max-width: 100vw; }
 
   body {
     @apply font-sans text-text bg-white antialiased overflow-x-hidden;
     line-height: 1.65;
   }
 
-  img, video {
-    @apply max-w-full block;
-  }
-
-  a {
-    @apply text-inherit no-underline;
-  }
-
-  button {
-    @apply cursor-pointer font-sans;
-  }
-
-  ul, ol {
-    @apply list-none;
-  }
+  img, video { @apply max-w-full block; }
+  a          { @apply text-inherit no-underline; }
+  button     { @apply cursor-pointer font-sans; }
+  ul, ol     { @apply list-none; }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold text-dark tracking-tight;
+    @apply font-sans font-bold text-dark;
     line-height: 1.2;
     letter-spacing: -0.02em;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
-    }
-    html {
-      scroll-behavior: auto;
-    }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
   }
 }
 
-/* ─── Component layer ─────────────────────────────────────────── */
+/* ─── Components ───────────────────────────────────────────── */
 @layer components {
 
   /* Layout */
-  .container {
-    @apply w-full max-w-container mx-auto px-6;
-  }
-
-  .section {
-    @apply py-section;
-  }
-
-  .section-sm {
-    @apply py-section-sm;
-  }
+  .container   { @apply w-full max-w-[1200px] mx-auto px-6; }
+  .section     { @apply py-section; }
+  .section-sm  { @apply py-section-sm; }
 
   .section-title {
     @apply text-4xl font-extrabold text-dark mb-2;
+    @apply max-md:text-3xl;
   }
-
   .section-subtitle {
     @apply text-lg text-muted max-w-[560px] leading-relaxed mb-12;
+    @apply max-md:text-base max-md:mb-8;
   }
-
   .eyebrow {
     @apply inline-block text-sm font-semibold uppercase tracking-widest text-primary mb-3;
   }
+  .divider { @apply h-px bg-border; }
 
-  /* Divider */
-  .divider {
-    @apply h-px bg-border;
-  }
-
-  /* ── Buttons ── */
+  /* Buttons */
   .btn {
     @apply inline-flex items-center gap-2 text-base font-semibold
            px-7 py-3.5 rounded-md border-2 border-transparent
-           transition-all duration-[180ms] ease-linear
-           leading-none whitespace-nowrap text-center;
+           transition-all duration-[180ms] ease-linear leading-none whitespace-nowrap text-center;
   }
-
   .btn-primary {
     @apply bg-primary text-white border-primary
-           hover:bg-primary-dark hover:border-primary-dark
-           hover:-translate-y-px hover:shadow-md;
+           hover:bg-primary-dark hover:border-primary-dark hover:-translate-y-px hover:shadow-md;
   }
-
   .btn-accent {
     @apply bg-accent text-dark border-accent
-           hover:bg-accent-dark hover:border-accent-dark
-           hover:-translate-y-px hover:shadow-md;
+           hover:bg-accent-dark hover:border-accent-dark hover:-translate-y-px hover:shadow-md;
   }
-
   .btn-outline {
     @apply bg-transparent text-primary border-primary
            hover:bg-primary hover:text-white hover:-translate-y-px;
   }
-
   .btn-white {
     @apply bg-white text-primary border-white
            hover:bg-primary-light hover:-translate-y-px hover:shadow-md;
   }
-
   .btn-emergency {
     @apply bg-emergency text-white border-emergency
-           hover:bg-[#B91C1C] hover:border-[#B91C1C]
-           hover:-translate-y-px hover:shadow-[0_4px_16px_rgba(220,38,38,0.35)];
+           hover:bg-emergency-dark hover:border-emergency-dark hover:-translate-y-px;
+    &:hover { box-shadow: 0 4px 16px rgba(220,38,38,0.35); }
   }
-
   .btn-lg {
     @apply text-lg px-9 py-[1.125rem];
+    @apply max-md:text-base max-md:px-7 max-md:py-4;
   }
+  .btn-sm { @apply text-sm px-5 py-2.5; }
 
-  .btn-sm {
-    @apply text-sm px-5 py-2.5;
-  }
-
-  /* ── Cards ── */
+  /* Card */
   .card {
-    @apply bg-white border border-border rounded-lg p-7
-           shadow-sm transition-[box-shadow,transform] duration-200
+    @apply bg-white border border-border rounded-lg p-7 shadow-sm
+           transition-[box-shadow,transform] duration-200
            hover:shadow-md hover:-translate-y-0.5;
   }
 
-  /* ── Badges ── */
-  .badge {
-    @apply inline-block text-xs font-bold uppercase tracking-[0.06em]
-           py-1 px-2.5 rounded-pill;
-  }
+  /* Badges */
+  .badge           { @apply inline-block text-xs font-bold uppercase tracking-[0.06em] py-1 px-2.5 rounded-pill; }
+  .badge-primary   { @apply bg-primary-light text-primary; }
+  .badge-accent    { @apply bg-[#FEF3C7] text-[#92400E]; }
+  .badge-emergency { @apply bg-emergency-bg text-emergency; }
+  .badge-green     { @apply bg-[#DCFCE7] text-[#166534]; }
 
-  .badge-primary {
-    @apply bg-primary-light text-primary;
-  }
+  /* Stars */
+  .stars { @apply inline-flex gap-0.5 text-accent; }
 
-  .badge-accent {
-    @apply bg-[#FEF3C7] text-[#92400E];
-  }
-
-  .badge-emergency {
-    @apply bg-emergency-bg text-emergency;
-  }
-
-  .badge-green {
-    @apply bg-[#DCFCE7] text-[#166534];
-  }
-
-  /* ── Stars ── */
-  .stars {
-    @apply inline-flex gap-0.5 text-accent;
-  }
-
-  /* ── Forms ── */
-  .form-group {
-    @apply flex flex-col gap-1.5;
-  }
-
-  .form-label {
-    @apply text-sm font-semibold text-text;
-  }
-
+  /* Forms */
+  .form-group    { @apply flex flex-col gap-1.5; }
+  .form-label    { @apply text-sm font-semibold text-text; }
   .form-input,
   .form-select,
   .form-textarea {
@@ -211,20 +144,5 @@
            outline-none appearance-none
            focus:border-primary focus:shadow-[0_0_0_3px_rgba(27,79,216,0.10)];
   }
-
-  .form-textarea {
-    @apply resize-y min-h-[120px];
-  }
-}
-
-/* ─── Responsive overrides ────────────────────────────────────── */
-@media (max-width: 768px) {
-  :root {
-    --space-section:    3.5rem;
-    --space-section-sm: 2rem;
-  }
-
-  .section-title    { @apply text-3xl; }
-  .section-subtitle { @apply text-base mb-8; }
-  .btn-lg           { @apply text-base px-7 py-4; }
+  .form-textarea { @apply resize-y min-h-[120px]; }
 }

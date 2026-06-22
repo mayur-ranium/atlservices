@@ -7,6 +7,14 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      xs:  '500px',
+      sm:  '600px',
+      md:  '768px',
+      lg:  '900px',
+      xl:  '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         primary: {
@@ -21,6 +29,7 @@ export default {
         emergency: {
           DEFAULT: '#DC2626',
           bg:      '#FEF2F2',
+          dark:    '#B91C1C',
         },
         dark:    '#0F172A',
         text:    '#1E293B',
@@ -29,24 +38,12 @@ export default {
         surface: '#F8FAFC',
       },
       fontFamily: {
-        sans: ["system-ui", "-apple-system", "'Segoe UI'", "sans-serif"],
-      },
-      fontSize: {
-        xs:   ['0.75rem',  { lineHeight: '1rem' }],
-        sm:   ['0.875rem', { lineHeight: '1.25rem' }],
-        base: ['1rem',     { lineHeight: '1.65' }],
-        lg:   ['1.125rem', { lineHeight: '1.75rem' }],
-        xl:   ['1.25rem',  { lineHeight: '1.75rem' }],
-        '2xl':['1.5rem',   { lineHeight: '2rem' }],
-        '3xl':['1.875rem', { lineHeight: '2.25rem' }],
-        '4xl':['2.25rem',  { lineHeight: '2.5rem' }],
-        '5xl':['3rem',     { lineHeight: '1.2' }],
-        '6xl':['3.75rem',  { lineHeight: '1' }],
+        sans: ['system-ui', '-apple-system', "'Segoe UI'", 'sans-serif'],
       },
       spacing: {
-        'section':    '5rem',
+        section:      '5rem',
         'section-sm': '3rem',
-        'header':     '72px',
+        header:       '72px',
       },
       borderRadius: {
         sm:   '4px',
@@ -60,8 +57,13 @@ export default {
         md: '0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04)',
         lg: '0 12px 32px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.04)',
       },
-      maxWidth: {
-        container: '1200px',
+      backgroundImage: {
+        'hero-gradient':      'linear-gradient(135deg, #0F172A 0%, #1a2744 100%)',
+        'emergency-gradient': 'linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%)',
+        'emergency-banner':   'linear-gradient(135deg, #DC2626 0%, #B91C1C 100%)',
+      },
+      gridTemplateColumns: {
+        footer: '2fr 1fr 1fr 1.5fr',
       },
     },
   },

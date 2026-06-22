@@ -5,111 +5,140 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer style={styles.footer}>
+    <footer className="bg-dark">
+
       {/* Emergency banner */}
-      <div style={styles.emergencyBanner}>
-        <div className="container footer-emergency-inner">
+      <div className="bg-emergency-banner py-8">
+        <div className="container flex items-center justify-between gap-8 flex-wrap">
           <div>
-            <p style={styles.emergencyTitle}>🚨 Need emergency service right now?</p>
-            <p style={styles.emergencyNote}>Available 24/7 for plumbing, HVAC, and electrical emergencies.</p>
+            <p className="text-white font-extrabold text-xl mb-1">🚨 Need emergency service right now?</p>
+            <p className="text-white/85 text-[0.9rem]">Available 24/7 for plumbing, HVAC, and electrical emergencies.</p>
           </div>
-          <div className="footer-emergency-actions" style={styles.emergencyActions}>
-            <a href={CLIENT.phoneHref} className="btn btn-white btn-lg">
+          <div className="flex flex-col sm:flex-row gap-3 flex-wrap max-sm:w-full">
+            <a href={CLIENT.phoneHref} className="btn btn-white btn-lg max-sm:w-full max-sm:justify-center">
               📞 Call {CLIENT.phone}
             </a>
-            <Link href="/emergency" className="btn btn-emergency btn-lg">
+            <Link href="/emergency" className="btn btn-emergency btn-lg max-sm:w-full max-sm:justify-center">
               Emergency Request
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Main footer */}
-      <div style={styles.main}>
+      {/* Main footer body */}
+      <div className="pt-16 pb-8">
         <div className="container">
-          <div className="footer-grid">
-            {/* Brand column */}
-            <div style={styles.brandCol}>
-              <Link href="/" style={styles.logoLink}>
-                <span style={{ fontSize: "1.5rem" }}>⚡</span>
-                <span style={styles.logoText}>{CLIENT.businessName}</span>
+
+          {/* Grid: 4-col → 2-col → 1-col */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-footer gap-8 lg:gap-12 mb-12">
+
+            {/* Brand */}
+            <div>
+              <Link href="/" className="flex items-center gap-2 mb-4">
+                <span className="text-2xl">⚡</span>
+                <span className="text-white font-extrabold text-[1.1rem]" style={{ letterSpacing: '-0.02em' }}>
+                  {CLIENT.businessName}
+                </span>
               </Link>
-              <p style={styles.brandDesc}>{CLIENT.description}</p>
-              <div style={styles.trustItems}>
-                <span style={styles.trustItem}>✅ Licensed &amp; Insured</span>
-                <span style={styles.trustItem}>⭐ {CLIENT.rating} ({CLIENT.reviewCount} reviews)</span>
-                <span style={styles.trustItem}>🏅 Since {CLIENT.yearFounded}</span>
+              <p className="text-white/55 text-sm leading-[1.65] mb-4">{CLIENT.description}</p>
+              <div className="flex flex-col gap-1.5 mb-5">
+                <span className="text-white/70 text-[0.8rem]">✅ Licensed &amp; Insured</span>
+                <span className="text-white/70 text-[0.8rem]">⭐ {CLIENT.rating} ({CLIENT.reviewCount} reviews)</span>
+                <span className="text-white/70 text-[0.8rem]">🏅 Since {CLIENT.yearFounded}</span>
               </div>
-              <div style={styles.social}>
-                <a href={CLIENT.facebookUrl} style={styles.socialLink} aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
-                <a href={CLIENT.instagramUrl} style={styles.socialLink} aria-label="Instagram" target="_blank" rel="noopener noreferrer">in</a>
-                <a href={CLIENT.googleBusinessUrl} style={styles.socialLink} aria-label="Google Business" target="_blank" rel="noopener noreferrer">G</a>
+              <div className="flex gap-2.5">
+                {[
+                  { href: CLIENT.facebookUrl,       label: "Facebook",        text: "f"  },
+                  { href: CLIENT.instagramUrl,       label: "Instagram",       text: "in" },
+                  { href: CLIENT.googleBusinessUrl,  label: "Google Business", text: "G"  },
+                ].map((s) => (
+                  <a key={s.label} href={s.href} aria-label={s.label} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-white/10 text-white/70 font-bold text-[0.85rem] transition-[background] duration-150 hover:bg-white/20">
+                    {s.text}
+                  </a>
+                ))}
               </div>
             </div>
 
-            {/* Services column */}
+            {/* Services */}
             <div>
-              <p style={styles.colTitle}>Services</p>
-              <ul style={styles.linkList}>
+              <p className="text-white font-bold text-[0.8rem] tracking-[0.1em] uppercase mb-4">Services</p>
+              <ul className="flex flex-col gap-2.5">
                 {SERVICES.map((s) => (
                   <li key={s.slug}>
-                    <Link href={`/services/${s.slug}`} style={styles.footerLink}>{s.name}</Link>
+                    <Link href={`/services/${s.slug}`}
+                      className="text-white/60 text-sm transition-colors duration-150 hover:text-white/90">
+                      {s.name}
+                    </Link>
                   </li>
                 ))}
-                <li><Link href="/services" style={styles.footerLink}>All Services →</Link></li>
+                <li>
+                  <Link href="/services" className="text-white/60 text-sm transition-colors duration-150 hover:text-white/90">
+                    All Services →
+                  </Link>
+                </li>
               </ul>
             </div>
 
-            {/* Quick links column */}
+            {/* Company */}
             <div>
-              <p style={styles.colTitle}>Company</p>
-              <ul style={styles.linkList}>
-                <li><Link href="/about" style={styles.footerLink}>About Us</Link></li>
-                <li><Link href="/gallery" style={styles.footerLink}>Project Gallery</Link></li>
-                <li><Link href="/reviews" style={styles.footerLink}>Reviews</Link></li>
-                <li><Link href="/areas" style={styles.footerLink}>Service Areas</Link></li>
-                <li><Link href="/blog" style={styles.footerLink}>Blog</Link></li>
-                <li><Link href="/contact" style={styles.footerLink}>Contact</Link></li>
+              <p className="text-white font-bold text-[0.8rem] tracking-[0.1em] uppercase mb-4">Company</p>
+              <ul className="flex flex-col gap-2.5">
+                {([
+                  ["/about",   "About Us"],
+                  ["/gallery", "Project Gallery"],
+                  ["/reviews", "Reviews"],
+                  ["/areas",   "Service Areas"],
+                  ["/blog",    "Blog"],
+                  ["/contact", "Contact"],
+                ] as [string, string][]).map(([href, label]) => (
+                  <li key={href}>
+                    <Link href={href} className="text-white/60 text-sm transition-colors duration-150 hover:text-white/90">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Contact column */}
+            {/* Contact */}
             <div>
-              <p style={styles.colTitle}>Contact</p>
-              <ul style={styles.contactList}>
-                <li style={styles.contactItem}>
+              <p className="text-white font-bold text-[0.8rem] tracking-[0.1em] uppercase mb-4">Contact</p>
+              <ul className="flex flex-col gap-3.5 mb-6">
+                <li className="flex gap-2.5 items-start text-sm">
                   <span>📞</span>
-                  <a href={CLIENT.phoneHref} style={{ ...styles.footerLink, fontWeight: 700 }}>{CLIENT.phone}</a>
+                  <a href={CLIENT.phoneHref} className="text-white/60 font-bold text-sm hover:text-white/90">{CLIENT.phone}</a>
                 </li>
-                <li style={styles.contactItem}>
+                <li className="flex gap-2.5 items-start text-sm">
                   <span>✉️</span>
-                  <a href={`mailto:${CLIENT.email}`} style={styles.footerLink}>{CLIENT.email}</a>
+                  <a href={`mailto:${CLIENT.email}`} className="text-white/60 text-sm hover:text-white/90">{CLIENT.email}</a>
                 </li>
-                <li style={styles.contactItem}>
+                <li className="flex gap-2.5 items-start text-sm">
                   <span>📍</span>
-                  <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.875rem" }}>{CLIENT.address.full}</span>
+                  <span className="text-white/60 text-sm">{CLIENT.address.full}</span>
                 </li>
-                <li style={styles.contactItem}>
+                <li className="flex gap-2.5 items-start text-sm">
                   <span>🕐</span>
                   <div>
-                    <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.875rem" }}>{CLIENT.hours.regular}</p>
-                    <p style={{ color: "var(--color-accent)", fontSize: "0.875rem", fontWeight: 600 }}>{CLIENT.hours.emergency}</p>
+                    <p className="text-white/70 text-sm">{CLIENT.hours.regular}</p>
+                    <p className="text-accent font-semibold text-sm">{CLIENT.hours.emergency}</p>
                   </div>
                 </li>
               </ul>
-              <div style={{ marginTop: "1.5rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+              <div className="flex gap-3 flex-wrap">
                 <Link href="/book" className="btn btn-accent btn-sm">Book Online</Link>
-                <Link href="/quote" className="btn btn-outline btn-sm" style={{ borderColor: "rgba(255,255,255,0.3)", color: "var(--color-white)" }}>Free Quote</Link>
+                <Link href="/quote" className="btn btn-sm border-white/30 text-white bg-transparent">Free Quote</Link>
               </div>
             </div>
           </div>
 
-          <div className="footer-bottom" style={styles.bottom}>
-            <p style={styles.copyright}>© {year} {CLIENT.legalName}. All rights reserved.</p>
-            <div style={styles.legalLinks}>
-              <Link href="/privacy" style={styles.legalLink}>Privacy Policy</Link>
-              <Link href="/terms" style={styles.legalLink}>Terms of Service</Link>
-              <span style={{ color: "rgba(255,255,255,0.3)" }}>{CLIENT.licenseNumber}</span>
+          {/* Bottom bar */}
+          <div className="border-t border-white/[0.08] pt-6 flex justify-between items-center flex-wrap gap-4 max-md:flex-col max-md:items-start">
+            <p className="text-white/40 text-[0.8rem]">© {year} {CLIENT.legalName}. All rights reserved.</p>
+            <div className="flex gap-6 items-center">
+              <Link href="/privacy" className="text-white/40 text-[0.8rem]">Privacy Policy</Link>
+              <Link href="/terms"   className="text-white/40 text-[0.8rem]">Terms of Service</Link>
+              <span className="text-white/30">{CLIENT.licenseNumber}</span>
             </div>
           </div>
         </div>
@@ -117,99 +146,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-const styles: Record<string, React.CSSProperties> = {
-  footer: { background: "var(--color-dark)" },
-  emergencyBanner: {
-    background: "linear-gradient(135deg, #DC2626 0%, #B91C1C 100%)",
-    padding: "2rem 0",
-  },
-  emergencyInner: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: "2rem",
-    flexWrap: "wrap",
-  },
-  emergencyTitle: {
-    color: "#fff",
-    fontWeight: 800,
-    fontSize: "1.25rem",
-    marginBottom: "0.25rem",
-  },
-  emergencyNote: { color: "rgba(255,255,255,0.85)", fontSize: "0.9rem" },
-  emergencyActions: { display: "flex", gap: "0.75rem", flexWrap: "wrap" },
-  main: { padding: "4rem 0 2rem" },
-  grid: { marginBottom: "3rem" }, // layout handled by .footer-grid in responsive.css
-  brandCol: {},
-  logoLink: {
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-    marginBottom: "1rem",
-    textDecoration: "none",
-  },
-  logoText: {
-    color: "#fff",
-    fontWeight: 800,
-    fontSize: "1.1rem",
-    letterSpacing: "-0.02em",
-  },
-  brandDesc: {
-    color: "rgba(255,255,255,0.55)",
-    fontSize: "0.875rem",
-    lineHeight: 1.65,
-    marginBottom: "1rem",
-  },
-  trustItems: { display: "flex", flexDirection: "column", gap: "0.375rem", marginBottom: "1.25rem" },
-  trustItem: { color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" },
-  social: { display: "flex", gap: "0.625rem" },
-  socialLink: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "36px",
-    height: "36px",
-    borderRadius: "var(--radius-md)",
-    background: "rgba(255,255,255,0.1)",
-    color: "rgba(255,255,255,0.7)",
-    fontWeight: 700,
-    fontSize: "0.85rem",
-    textDecoration: "none",
-    transition: "background 0.15s",
-  },
-  colTitle: {
-    color: "#fff",
-    fontWeight: 700,
-    fontSize: "0.8rem",
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
-    marginBottom: "1rem",
-  },
-  linkList: { display: "flex", flexDirection: "column", gap: "0.625rem" },
-  footerLink: {
-    color: "rgba(255,255,255,0.6)",
-    fontSize: "0.875rem",
-    textDecoration: "none",
-    transition: "color 0.15s",
-  },
-  contactList: { display: "flex", flexDirection: "column", gap: "0.875rem" },
-  contactItem: {
-    display: "flex",
-    gap: "0.625rem",
-    alignItems: "flex-start",
-    fontSize: "0.875rem",
-  },
-  bottom: {
-    borderTop: "1px solid rgba(255,255,255,0.08)",
-    paddingTop: "1.5rem",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexWrap: "wrap",
-    gap: "1rem",
-  },
-  copyright: { color: "rgba(255,255,255,0.4)", fontSize: "0.8rem" },
-  legalLinks: { display: "flex", gap: "1.5rem", alignItems: "center" },
-  legalLink: { color: "rgba(255,255,255,0.4)", fontSize: "0.8rem", textDecoration: "none" },
-};

@@ -7,51 +7,25 @@ export default function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+    <div className="flex flex-col gap-2.5">
       {faqs.map((faq, i) => (
         <div
           key={i}
-          style={{
-            border: `1.5px solid ${open === i ? "var(--color-primary)" : "var(--color-border)"}`,
-            borderRadius: "var(--radius-md)",
-            overflow: "hidden",
-            transition: "border-color 0.2s",
-          }}
+          className="rounded-md overflow-hidden transition-[border-color] duration-200 border-[1.5px]"
+          style={{ borderColor: open === i ? "var(--color-primary)" : "var(--color-border)" }}
         >
           <button
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "1rem",
-              padding: "1.125rem 1.25rem",
-              background: open === i ? "var(--color-primary-light)" : "var(--color-white)",
-              border: "none",
-              cursor: "pointer",
-              textAlign: "left",
-              transition: "background 0.2s",
-            }}
+            className="w-full flex justify-between items-center gap-4 px-5 py-[1.125rem] border-none cursor-pointer text-left transition-[background] duration-200"
+            style={{ background: open === i ? "var(--color-primary-light)" : "var(--color-white)" }}
           >
-            <span style={{ fontWeight: 600, fontSize: "0.95rem", color: "var(--color-dark)", lineHeight: 1.4 }}>
-              {faq.q}
-            </span>
+            <span className="font-semibold text-[0.95rem] text-dark leading-snug">{faq.q}</span>
             <span
+              className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-base font-bold transition-[background,color,transform] duration-200"
               style={{
-                flexShrink: 0,
-                width: "24px",
-                height: "24px",
-                borderRadius: "50%",
                 background: open === i ? "var(--color-primary)" : "var(--color-surface)",
                 color: open === i ? "#fff" : "var(--color-muted)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1rem",
-                fontWeight: 700,
-                transition: "background 0.2s, color 0.2s, transform 0.2s",
                 transform: open === i ? "rotate(45deg)" : "rotate(0deg)",
               }}
             >
@@ -59,15 +33,7 @@ export default function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
             </span>
           </button>
           {open === i && (
-            <div
-              style={{
-                padding: "0 1.25rem 1.25rem",
-                fontSize: "0.9rem",
-                color: "var(--color-muted)",
-                lineHeight: 1.7,
-                background: "var(--color-white)",
-              }}
-            >
+            <div className="px-5 pb-5 text-[0.9rem] text-muted leading-[1.7] bg-white">
               {faq.a}
             </div>
           )}

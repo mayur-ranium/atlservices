@@ -14,32 +14,18 @@ export default function MobileCallButton() {
   return (
     <a
       href={CLIENT.phoneHref}
-      className="mobile-call-btn"
       aria-label={`Call ${CLIENT.businessName}: ${CLIENT.phone}`}
-      style={{
-        position: "fixed",
-        bottom: "1.25rem",
-        right: "1.25rem",
-        zIndex: 900,
-        display: "flex",
-        alignItems: "center",
-        gap: "0.5rem",
-        background: "var(--color-primary)",
-        color: "#fff",
-        fontWeight: 700,
-        fontSize: "0.95rem",
-        padding: "0.875rem 1.25rem",
-        borderRadius: "var(--radius-pill)",
-        boxShadow: "0 4px 20px rgba(27,79,216,0.45)",
-        textDecoration: "none",
-        transition: "opacity 0.25s, transform 0.25s",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(8px)",
-        pointerEvents: visible ? "auto" : "none",
-        // Mobile only — hidden on desktop via JS check
-      }}
+      className={[
+        "md:hidden fixed bottom-5 right-5 z-[900]",
+        "flex items-center gap-2",
+        "bg-primary text-white font-bold text-[0.95rem]",
+        "px-5 py-3.5 rounded-pill",
+        "shadow-[0_4px_20px_rgba(27,79,216,0.45)]",
+        "transition-[opacity,transform] duration-[250ms]",
+        visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-2 pointer-events-none",
+      ].join(" ")}
     >
-      <span style={{ fontSize: "1.1rem" }}>📞</span>
+      <span className="text-[1.1rem]">📞</span>
       Call Now
     </a>
   );

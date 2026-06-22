@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CLIENT, SERVICES } from "@/lib/client-config";
+import FormSubmit from "@/components/ui/FormSubmit";
 
 export const metadata: Metadata = {
   title: `Book a Service — ${CLIENT.businessName}`,
@@ -92,7 +93,7 @@ export default function BookPage() {
               Fields marked <span className="text-emergency font-bold">*</span> are required.
             </p>
 
-            <form action={CLIENT.formspreeEndpoint} method="POST" className="flex flex-col gap-6">
+            <FormSubmit action={CLIENT.formspreeEndpoint} className="flex flex-col gap-6">
 
               {/* ── Contact ──────────────────────────────────── */}
               <fieldset className="flex flex-col gap-4 p-6 border border-border rounded-lg bg-white">
@@ -210,9 +211,7 @@ export default function BookPage() {
                 </div>
               </fieldset>
 
-              {/* Hidden Formspree fields */}
               <input type="hidden" name="_subject" value="New Appointment Request from Website" />
-              <input type="hidden" name="_next" value="/thank-you" />
               <input type="hidden" name="form_type" value="booking" />
 
               <button type="submit" className="btn btn-primary btn-lg w-full justify-center">
@@ -223,7 +222,7 @@ export default function BookPage() {
                 <strong>What happens next:</strong> A team member will call to confirm your appointment,
                 usually within 2–3 hours during business hours.
               </div>
-            </form>
+            </FormSubmit>
           </div>
 
           {/* ── SIDEBAR ───────────────────────────────────────── */}

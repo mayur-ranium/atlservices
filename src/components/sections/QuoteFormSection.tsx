@@ -1,4 +1,5 @@
 import { CLIENT, SERVICES } from "@/lib/client-config";
+import FormSubmit from "@/components/ui/FormSubmit";
 
 type Props = {
   preselectedService?: string;
@@ -36,7 +37,7 @@ export default function QuoteFormSection({ preselectedService, heading = "Get a 
 
         {/* Form */}
         <div className="bg-white/[0.07] border border-white/[0.12] rounded-xl p-8">
-          <form action={CLIENT.formspreeEndpoint} method="POST" className="flex flex-col gap-4">
+          <FormSubmit action={CLIENT.formspreeEndpoint} className="flex flex-col gap-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="form-group">
                 <label className="form-label !text-white/85" htmlFor="qs-name">Your Name</label>
@@ -71,7 +72,6 @@ export default function QuoteFormSection({ preselectedService, heading = "Get a 
             </div>
 
             <input type="hidden" name="_subject" value="New Quote Request from Website" />
-            <input type="hidden" name="_next" value="/thank-you" />
 
             <button type="submit" className="btn btn-accent btn-lg w-full justify-center">
               Send My Free Quote Request →
@@ -79,7 +79,7 @@ export default function QuoteFormSection({ preselectedService, heading = "Get a 
             <p className="text-xs text-white/50 text-center">
               We respond within a few hours. No spam, no pressure.
             </p>
-          </form>
+          </FormSubmit>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CLIENT, SERVICES } from "@/lib/client-config";
+import FormSubmit from "@/components/ui/FormSubmit";
 
 export const metadata: Metadata = {
   title: `Free Quote — ${CLIENT.businessName}`,
@@ -92,7 +93,7 @@ export default function QuotePage() {
             </h2>
             <p className="text-muted text-sm mb-8">Fields marked <span className="text-emergency font-bold">*</span> are required.</p>
 
-            <form action={CLIENT.formspreeEndpoint} method="POST" className="flex flex-col gap-6">
+            <FormSubmit action={CLIENT.formspreeEndpoint} className="flex flex-col gap-6">
 
               {/* ── Contact info ─────────────────────────────── */}
               <fieldset className="flex flex-col gap-4 p-6 border border-border rounded-lg bg-white">
@@ -211,9 +212,7 @@ export default function QuotePage() {
                 </div>
               </fieldset>
 
-              {/* Hidden fields for Formspree */}
               <input type="hidden" name="_subject" value="New Quote Request from Website" />
-              <input type="hidden" name="_next" value="/thank-you" />
 
               <button type="submit" className="btn btn-primary btn-lg w-full justify-center">
                 Send My Free Quote Request →
@@ -221,7 +220,7 @@ export default function QuotePage() {
               <p className="text-xs text-muted text-center">
                 By submitting you agree to be contacted about your project. No spam — ever.
               </p>
-            </form>
+            </FormSubmit>
           </div>
 
           {/* ── SIDEBAR ───────────────────────────────────────── */}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CLIENT, EMERGENCY_TYPES, SERVICES } from "@/lib/client-config";
+import FormSubmit from "@/components/ui/FormSubmit";
 
 type Props = { params: { type: string } };
 
@@ -139,7 +140,7 @@ export default function EmergencyTypePage({ params }: Props) {
               <p className="text-dark font-black text-lg mb-1">Request Help Now</p>
               <p className="text-muted text-sm mb-5">We&apos;ll call you back within minutes.</p>
 
-              <form action={CLIENT.formspreeEndpoint} method="POST" className="flex flex-col gap-4">
+              <FormSubmit action={CLIENT.formspreeEndpoint} className="flex flex-col gap-4">
                 <div className="form-group">
                   <label className="form-label" htmlFor="et-name">Your Name</label>
                   <input className="form-input" id="et-name" name="name" type="text" placeholder="John Smith" required />
@@ -167,7 +168,7 @@ export default function EmergencyTypePage({ params }: Props) {
                 <button type="submit" className="btn btn-emergency w-full justify-center font-black">
                   🚨 Send Emergency Request
                 </button>
-              </form>
+              </FormSubmit>
             </div>
           </div>
         </div>

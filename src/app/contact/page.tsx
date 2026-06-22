@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CLIENT, SERVICES } from "@/lib/client-config";
+import FormSubmit from "@/components/ui/FormSubmit";
 
 export const metadata: Metadata = {
   title: `Contact Us — ${CLIENT.businessName}`,
@@ -105,7 +106,7 @@ export default function ContactPage() {
               We read every message and respond within a few hours during business hours.
             </p>
 
-            <form action={CLIENT.formspreeEndpoint} method="POST" className="flex flex-col gap-5">
+            <FormSubmit action={CLIENT.formspreeEndpoint} className="flex flex-col gap-5">
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="form-group">
@@ -161,7 +162,6 @@ export default function ContactPage() {
               </div>
 
               <input type="hidden" name="_subject" value="New Contact Form Message" />
-              <input type="hidden" name="_next" value="/thank-you" />
 
               <button type="submit" className="btn btn-primary btn-lg w-full justify-center">
                 Send Message →
@@ -169,7 +169,7 @@ export default function ContactPage() {
               <p className="text-xs text-muted text-center">
                 We respond within a few hours during business hours. No spam — ever.
               </p>
-            </form>
+            </FormSubmit>
           </div>
 
           {/* ── SIDEBAR ───────────────────────────────────────── */}

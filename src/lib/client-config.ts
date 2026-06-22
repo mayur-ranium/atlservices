@@ -52,6 +52,10 @@ export const CLIENT = {
   reviewCount: 143,
   projectsCompleted: 2400,
 
+  // ── Site URL — used for absolute redirects (Formspree _next) ──
+  // Local dev: "http://localhost:3000"  |  Production: "https://yourdomain.com"
+  siteUrl: "http://localhost:3000",
+
   // ── Booking & Forms ────────────────────────────────────────
   // Acuity Scheduling embed URL — get from your Acuity account
   acuityEmbedUrl: "https://app.acuityscheduling.com/schedule.php?owner=YOUR_ID",

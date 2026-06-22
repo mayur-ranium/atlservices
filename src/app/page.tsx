@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CLIENT, SERVICES } from "@/lib/client-config";
+import FormSubmit from "@/components/ui/FormSubmit";
 
 export const metadata: Metadata = {
   title: `${CLIENT.businessName} — Home Services in ${CLIENT.primaryArea}`,
@@ -251,7 +252,7 @@ export default function HomePage() {
 
 function QuoteFormInline() {
   return (
-    <form action={CLIENT.formspreeEndpoint} method="POST" className="flex flex-col gap-4">
+    <FormSubmit action={CLIENT.formspreeEndpoint} className="flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="form-group">
           <label className="form-label !text-white/85" htmlFor="name">Your Name</label>
@@ -282,6 +283,6 @@ function QuoteFormInline() {
       <p className="text-xs text-white/55 text-center">
         We respond within a few hours during business hours. No spam, no pressure.
       </p>
-    </form>
+    </FormSubmit>
   );
 }

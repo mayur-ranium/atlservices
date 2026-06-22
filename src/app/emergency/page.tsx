@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CLIENT, EMERGENCY_TYPES } from "@/lib/client-config";
+import FormSubmit from "@/components/ui/FormSubmit";
 
 export const metadata: Metadata = {
   title: `Emergency Home Services — ${CLIENT.businessName}`,
@@ -80,11 +81,7 @@ export default function EmergencyPage() {
                 Fill this out and we&apos;ll call you back within minutes.
               </p>
 
-              <form
-                action={CLIENT.formspreeEndpoint}
-                method="POST"
-                className="flex flex-col gap-4"
-              >
+              <FormSubmit action={CLIENT.formspreeEndpoint} className="flex flex-col gap-4">
                 <div className="form-group">
                   <label className="form-label" htmlFor="em-name">Your Name</label>
                   <input
@@ -146,7 +143,7 @@ export default function EmergencyPage() {
                     {CLIENT.phone}
                   </a>
                 </p>
-              </form>
+              </FormSubmit>
             </div>
           </div>
         </div>

@@ -32,6 +32,7 @@ const WHAT_TO_EXPECT = [
 ];
 
 export default function BookPage() {
+  const today = new Date().toISOString().split("T")[0];
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────────── */}
@@ -165,11 +166,11 @@ export default function BookPage() {
                     <label className="form-label" htmlFor="b-date1">
                       Preferred Date <span className="text-emergency">*</span>
                     </label>
-                    <input className="form-input" id="b-date1" name="preferred_date" type="date" required />
+                    <input className="form-input" id="b-date1" name="preferred_date" type="date" min={today} required />
                   </div>
                   <div className="form-group">
                     <label className="form-label" htmlFor="b-date2">Alternate Date</label>
-                    <input className="form-input" id="b-date2" name="alternate_date" type="date" />
+                    <input className="form-input" id="b-date2" name="alternate_date" type="date" min={today} />
                   </div>
                 </div>
 
